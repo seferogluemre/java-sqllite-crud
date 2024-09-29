@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                  System.out.println("Kitabın ismi: "+name);
                  System.out.println("Kitabın Numarası: "+numara);
                  System.out.println("Kitabın Yazarı: "+yazar);
+                 System.out.println("Deneme mesajıdır");
              }
             cursor.close();
 
