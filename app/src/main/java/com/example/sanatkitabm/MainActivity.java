@@ -31,23 +31,26 @@ public class MainActivity extends AppCompatActivity {
         });
         try {
              SQLiteDatabase database=this.openOrCreateDatabase("Kütüphane",MODE_PRIVATE,null);
-             database.execSQL("CREATE TABLE IF NOT EXISTS kitaplar (isim VARCHAR,numara INT PRİMARY KEY,yazar VARCHAR)");
-             database.execSQL("INSERT INTO kitaplar(isim,numara,yazar) values ('Varoluşun Anlamı',1922,'Deneme Kitabıdır')");
+             database.execSQL("CREATE TABLE IF NOT EXISTS Ögrenciler (numara INTEGER PRIMARY KEY,isim VARCHAR(25),sınıf VARCHAR)");
 
-             Cursor cursor=database.rawQuery("SELECT  * from kitaplar",null);
+             database.execSQL("Delete from Ögrenciler");
+             database.execSQL("INSERT INTO Ögrenciler (isim,sınıf) values ('Ahmet','11h')");
+             database.execSQL("INSERT INTO Ögrenciler (isim,sınıf) values ('Efe','11h')");
+
+             Cursor cursor=database.rawQuery("Select * from Ögrenciler where isim='Efe' " ,null);
 
              int nameIndex=cursor.getColumnIndex("isim");
              int numaraIndex=cursor.getColumnIndex("numara");
-             int yazarIndex=cursor.getColumnIndex("yazar");
+             int yazarIndex=cursor.getColumnIndex("sınıf");
 
              while (cursor.moveToNext()){
-                 String name=cursor.getString(nameIndex).toString();
-                 int numara=cursor.getInt(numaraIndex);
-                 String yazar=cursor.getString(yazarIndex).toString();
-
-                 System.out.println("Kitabın ismi: "+name);
+                 String name = cursor.getString(nameIndex).toString();
+                 int numara = cursor.getInt(numaraIndex);
+                 String yazar = cursor.getString(yazarIndex).toString();
+                 System.out.println("Ögrenci Ad: "+name);
                  System.out.println("Kitabın Numarası: "+numara);
-                 System.out.println("Kitabın Yazarı: "+yazar);
+                 System.out.println("Ögrenci Sınıfı: "+yazar);
+                 System.out.println("----------------------");
              }
             cursor.close();
 
